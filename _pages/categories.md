@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "Categories2"
+title: "Categories"
 author: "TY_K"
-permalink: /categories2/
+permalink: /categories/
 ---
 
 <div>
     <h2> network </h2>
     {% for network in site.categories.network %}
         <div>
-            □ <a href="{{ network.url | prepend: site.baseurl }}">{{ network.title }}</a>
+            - <a href="{{ network.url | prepend: site.baseurl }}">{{ network.title }}</a>
         </div>
     {% endfor %}
 </div>
@@ -17,7 +17,7 @@ permalink: /categories2/
     <h2> JS </h2>
     {% for JS in site.categories.JS %}
         <div>
-            □ <a href="{{ JS.url | prepend: site.baseurl }}">{{ JS.title }}</a>
+            - <a href="{{ JS.url | prepend: site.baseurl }}">{{ JS.title }}</a>
         </div>
     {% endfor %}
 </div>
