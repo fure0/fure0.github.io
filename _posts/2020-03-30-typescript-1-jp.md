@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: "JS"
 title: "Type Script"
 author: "TY_K"
 ---

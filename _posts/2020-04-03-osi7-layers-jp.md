@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: "network"
 title: "OSI 7 階層(OSI 7 Layers)"
 author: "TY_K"
 ---

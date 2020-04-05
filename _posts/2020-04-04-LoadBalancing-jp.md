@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: "network"
 title: "LoadBalancing"
 author: "TY_K"
 ---
