@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Categories"
+title: "Categories2"
 author: "TY_K"
-permalink: /categories/
+permalink: /categories2/
 ---
 
 <div>
