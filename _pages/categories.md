@@ -14,6 +14,14 @@ permalink: /categories/
     {% endfor %}
 </div>
 <div>
+    <h2> web </h2>
+    {% for web in site.categories.web %}
+        <div>
+            - <a href="{{ web.url | prepend: site.baseurl }}">{{ web.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+<div>
     <h2> JS </h2>
     {% for JS in site.categories.JS %}
         <div>
