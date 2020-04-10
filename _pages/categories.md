@@ -22,6 +22,14 @@ permalink: /categories/
     {% endfor %}
 </div>
 <div>
+    <h2> OS </h2>
+    {% for os in site.categories.os %}
+        <div>
+            - <a href="{{ os.url | prepend: site.baseurl }}">{{ os.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+<div>
     <h2> JS </h2>
     {% for JS in site.categories.JS %}
         <div>
