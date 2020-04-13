@@ -37,3 +37,11 @@ permalink: /categories/
         </div>
     {% endfor %}
 </div>
+<div>
+    <h2> Java </h2>
+    {% for Java in site.categories.Java %}
+        <div>
+            - <a href="{{ Java.url | prepend: site.baseurl }}">{{ Java.title }}</a>
+        </div>
+    {% endfor %}
+</div>
