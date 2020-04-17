@@ -45,3 +45,11 @@ permalink: /categories/
         </div>
     {% endfor %}
 </div>
+<div>
+    <h2> DB </h2>
+    {% for DB in site.categories.DB %}
+        <div>
+            - <a href="{{ DB.url | prepend: site.baseurl }}">{{ DB.title }}</a>
+        </div>
+    {% endfor %}
+</div>
