@@ -23,7 +23,7 @@ REST がデザインパターンである、アーキテクチャである多く
 * Hierarchical system
 * Code on demand
 
-cf)より詳しい内容についてはReferenceをご参照ください。 
+cf)より詳しい内容についてはReferenceをご参照ください。
 
 ### RESTfulにAPIをデザインするということは何を意味するのか。(要約)
 
