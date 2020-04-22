@@ -24,7 +24,7 @@ author: "TY_K"
 ## Wrapperクラスとは
 
 primitive type（int、long、float、double ...）をオブジェクト化した形がwrapper class
-```
+```java
 Integer a = new Integer(3);
         
 System.out.println(a.MIN_VALUE); //-2147483648
@@ -33,7 +33,7 @@ System.out.println(a.MAX_VALUE); //2147483647
 ## Auto Boxing / UnBoxing
 
 Javaでは自動で変換してくれる。
-```
+```java
 int i = 1;
 Integer integer = i; // int -> Integer(Auto Boxing)
 int i = integer; // Integer -> int(Auto UnBoxing)

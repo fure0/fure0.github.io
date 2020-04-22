@@ -14,7 +14,7 @@ author: "TY_K"
 String は immutable(不変)で、String Buffer、String Builder は mutable(可変)である。
 
 つまり、StringクラスはStringBufferクラスやStringBuilderクラスとは異なり、<span style="color:blue">リテラルによって生成されると、そのインスタンスのメモリ空間は絶対に変わらない。</span>
-```
+```java
 String literalString = "literal"; //リテラルで生成する方式
 String newString = new String("literal"); //newで生成する方式
 
