@@ -53,3 +53,11 @@ permalink: /categories/
         </div>
     {% endfor %}
 </div>
+<div>
+    <h2> DataStructure </h2>
+    {% for DS in site.categories.DataStructure %}
+        <div>
+            - <a href="{{ DS.url | prepend: site.baseurl }}">{{ DS.title }}</a>
+        </div>
+    {% endfor %}
+</div>
