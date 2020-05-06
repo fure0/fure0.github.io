@@ -30,6 +30,14 @@ permalink: /categories/
     {% endfor %}
 </div>
 <div>
+    <h2> Linux </h2>
+    {% for linux in site.categories.Linux %}
+        <div>
+            - <a href="{{ linux.url | prepend: site.baseurl }}">{{ linux.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+<div>
     <h2> JS </h2>
     {% for JS in site.categories.JS %}
         <div>
