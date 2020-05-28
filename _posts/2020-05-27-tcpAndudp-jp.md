@@ -1,6 +1,6 @@
 ---
 layout: post
-categories: "web"
+categories: "network"
 title: "TCP and UDP"
 author: "TY_K"
 ---
