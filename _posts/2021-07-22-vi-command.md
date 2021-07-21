@@ -45,3 +45,7 @@ author: "TY_K"
 
 * set nu - vi 라인 번호 출력
 * set nonu - vi 라인 번호 출력 취소
+
+[참조][link1]
+
+[link1]: https://blockdmask.tistory.com/25 "link1"
