@@ -1,12 +1,12 @@
 ---
 layout: post
 categories: "DataStructure"
-title: "Array"
+title: "Linear search"
 author: "TY_K"
 ---
 
-### Array
-linear search
+### Linear search
+Array
 
 #### [검색시간 복잡도]
 최상의 경우 T(n) = 1
