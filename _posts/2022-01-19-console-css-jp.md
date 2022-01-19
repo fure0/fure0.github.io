@@ -11,11 +11,11 @@ author: "TY_K"
     }
 </style>
 
-#### Javascriptの console.log()に CSSを使う
+#### Javascript의 console.log()에 CSS를 사용해보자
 
-jsのconsole.log()は頻繁に使うlog出力で、これにcssを書けることが出来る。
+js의console.log()는 빈번히 사용하는 출력로그로、여기에 css를 입힐수 있다
 
-例えば、
+예를들어
 
 ```javascript
 console.log('%c hello', 'font-size:20px; color:green');
