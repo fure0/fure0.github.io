@@ -11,6 +11,7 @@ author: "TY_K"
     }
     table tr td{
         border:1px solid;
+        padding:4px;
     }
     table th:first-of-type {
         width: 15%;
