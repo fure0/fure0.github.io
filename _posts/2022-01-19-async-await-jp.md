@@ -50,7 +50,7 @@ function logName() {
 여기서 fetchUser()라고 하는 코드는 서버에서 데이터를 받아오는 HTTP 통신 코드라고 가정했습니다. 일반적으로 자바스크립트의 비동기 처리 코드는 아래와 같이 콜백을 사용해야지 코드의 실행 순서를 보장받을 수 있죠.
 ```javascript
 function logName() {
-  // 下のuser変数は、上記のコードと比較するためにわざわざ残しておきました。
+  // 아래의 user 변수는 위의 코드와 비교하기 위해 일부러 남겨놓았습니다.
   var user = fetchUser('domain.com/users/1', function(user) {
     if (user.id === 1) {
       console.log(user.name);
@@ -63,7 +63,7 @@ function logName() {
 그래서 저희가 처음 프로그래밍을 배웠던 그때 그 사고로 돌아가는 것이죠. 아래와 같이 간단하게 생각하자구요.
 
 ```javascript
-// 非同期処理をコールバックにしなくても良いなら
+// 비동기 처리를 콜백으로 안해도 된다면..
 function logName() {
   var user = fetchUser('domain.com/users/1');
   if (user.id === 1) {
@@ -75,7 +75,7 @@ function logName() {
 
 이렇게 하려면 async await만 붙이시면 됩니다 :)
 ```javascript
-// async + await適用後
+// async & await 적용 후
 async function logName() {
   var user = await fetchUser('domain.com/users/1');
   if (user.id === 1) {
@@ -84,7 +84,7 @@ async function logName() {
 }
 ```
 
-### async & await 基本文法
+### async & await 기본 문법
 
 ```javascript
 async function test() {
@@ -92,11 +92,11 @@ async function test() {
 }
 ```
 
-まず、関数の前にasyncという予約語をつけます。 それから関数の内部ロジック中にHTTP通信をする非同期処理コードの前にawaitを付けます。 ここで注意すべき点は、非同期処理メソッドが必ずプロミスオブジェクトを返してこそ、awaitが意図した通りに動作します。
+먼저 함수의 앞에 async 라는 예약어를 붙입니다. 그러고 나서 함수의 내부 로직 중 HTTP 통신을 하는 비동기 처리 코드 앞에 await를 붙입니다. 여기서 주의하셔야 할 점은 비동기 처리 메서드가 꼭 프로미스 객체를 반환해야 await가 의도한 대로 동작합니다.
 
-一般に、awaitの対象となる非同期処理コードは、Axiosなどのプロミスを返すAPI呼び出し関数です。
+일반적으로 await의 대상이 되는 비동기 처리 코드는 Axios 등 프로미스를 반환하는 API 호출 함수입니다
 
-### async & await 기본 문법
+### async & await 간단한 예제
 
 ```javascript
 function fetchItems() {
@@ -205,6 +205,6 @@ async function logTodoTitle() {
 
 위의 코드를 실행하다가 발생한 네트워크 통신 오류뿐만 아니라 간단한 타입 오류 등의 일반적인 오류까지도 catch로 잡아낼 수 있습니다. 발견된 에러는 error 객체에 담기기 때문에 에러의 유형에 맞게 에러 코드를 처리해주시면 됩니다.
 
-[참고링크][async]
+[원문링크][async]
 
 [async]: https://joshua1988.github.io/web-development/javascript/js-async-await/ "async"

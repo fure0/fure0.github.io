@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: "web"
-title: "HTTP Status Code"
+title: "Http Status Code"
 author: "TY_K"
 ---
 
