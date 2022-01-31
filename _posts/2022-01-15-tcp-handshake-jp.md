@@ -77,10 +77,12 @@ author: "TY_K"
 
     세션 연결을 종료시킬 때 사용되며 더이상 전송할 데이터가 없음을 나타낸다.
 
-[원문링크1][TCP-HandShake]
+#### 원문링크    
+
+[[TCP] 3 way handshake & 4 way handshake][TCP-HandShake]
 
 [TCP-HandShake]: https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Network/TCP%203%20way%20handshake%20%26%204%20way%20handshake.md "TCP-HandShake"
 
-[원문링크2][TCP-Flag]
+[TCP flag(URG, ACK, PSH, RST, SYN, FIN)][TCP-Flag]
 
 [TCP-Flag]: https://mindgear.tistory.com/206 "TCP-Flag"

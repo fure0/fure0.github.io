@@ -54,8 +54,8 @@ L7 로드밸런서는 응용 계층의 정보를 가지고 로드 분산
 * L3: IP기반
 * L2: MAC Address기반
 
+#### 원문링크
 
-
-[참고링크][LoadBalancing]
+[로드 밸런싱(Load Balancing)][LoadBalancing]
 
 [LoadBalancing]: https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Network/%EB%A1%9C%EB%93%9C%20%EB%B0%B8%EB%9F%B0%EC%8B%B1(Load%20Balancing).md "LoadBalancing"

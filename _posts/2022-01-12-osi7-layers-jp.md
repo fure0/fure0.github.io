@@ -63,7 +63,7 @@ UDP : 비신뢰성, 비연결성, 실시간
 
 파일 인코딩, 명령어를 포장, 압축, 암호화한다.
 
-## 7) 応用(Application)
+## 7) 응용(Application)
 > HTTP, FTP, DNS 등
 
 최종 목적지로, 응용 프로세스와 직접 관계하여 일반적인 응용 서비스를 수행한다.
@@ -81,11 +81,11 @@ UDP : 비신뢰성, 비연결성, 실시간
  오버워치 소프트웨어에 문제가 없고, 스위치에 문제가 있으면(2계층 데이터링크 계층)
  있다고 판단해 다른 계층에 있는 장비나 소프트웨어를 건들이지 않는것이다.
 
+#### 원문링크
 
+[OSI 7 계층][osi7-1]
 
-[참고링크1][osi7-1]
-
-[참고링크2][osi7-2]
+[OSI 7 계층이란?, OSI 7 계층을 나눈 이유][osi7-2]
 
 [osi7-1]: https://github.com/gyoogle/tech-interview-for-developer/blob/master/Computer%20Science/Network/OSI%207%20%EA%B3%84%EC%B8%B5.md "osi7-1"
 
