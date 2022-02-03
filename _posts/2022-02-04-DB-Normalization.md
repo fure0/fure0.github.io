@@ -1,4 +1,5 @@
 ---
+published: true 
 layout: post
 categories: "DB"
 title: "DB Normalization"
