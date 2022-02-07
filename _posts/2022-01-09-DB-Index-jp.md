@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: "DB"
-title: "DB-INDEX"
+title: "DB INDEX"
 author: "TY_K"
 ---
 
