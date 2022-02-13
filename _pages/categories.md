@@ -69,3 +69,11 @@ permalink: /categories/
         </div>
     {% endfor %}
 </div>
+<div>
+    <h2> DesignPattern </h2>
+    {% for DP in site.categories.DesignPattern %}
+        <div>
+            - <a href="{{ DP.url | prepend: site.baseurl }}">{{ DP.title }}</a>
+        </div>
+    {% endfor %}
+</div>
