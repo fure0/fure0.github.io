@@ -62,6 +62,14 @@ permalink: /categories/
     {% endfor %}
 </div>
 <div>
+    <h2> DevOps </h2>
+    {% for DO in site.categories.DevOps %}
+        <div>
+            - <a href="{{ DO.url | prepend: site.baseurl }}">{{ DO.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+<div>
     <h2> DataStructure </h2>
     {% for DS in site.categories.DataStructure %}
         <div>
