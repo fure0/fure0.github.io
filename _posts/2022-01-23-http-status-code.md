@@ -82,7 +82,7 @@ author: "TY_K"
 |429 (Too Many Requests)|일정 시간 동안 너무 많은 요청을 보냈을 때 이를 거부하기 위해 사용|
 |451 (Unavailable For Legal Reasons)|국가 검열 등, 법적인 이유로 차단되었을 경우 사용할 수 있도록 정의된 코드|
 
-### 5XX (Client error: 클라이언트 에러)
+### 5XX (Server error: 서버 에러)
 
 > 올바른 요청에 대해 서버가 응답할 수 없다는 의미.
 
