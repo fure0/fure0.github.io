@@ -7,7 +7,8 @@ permalink: /categories/
 
 <div>
     <h2> network </h2>
-    {% for network in site.categories.network %}
+    {% assign network_category = site.categories.network | sort: 'date' %}
+    {% for network in network_category %}
         <div>
             - <a href="{{ network.url | prepend: site.baseurl }}">{{ network.title }}</a>
         </div>
@@ -15,7 +16,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> web </h2>
-    {% for web in site.categories.web %}
+    {% assign web_category = site.categories.web | sort: 'date' %}
+    {% for web in web_category %}
         <div>
             - <a href="{{ web.url | prepend: site.baseurl }}">{{ web.title }}</a>
         </div>
@@ -23,7 +25,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> OS </h2>
-    {% for os in site.categories.os %}
+    {% assign os_category = site.categories.os | sort: 'date' %}
+    {% for os in os_category %}
         <div>
             - <a href="{{ os.url | prepend: site.baseurl }}">{{ os.title }}</a>
         </div>
@@ -31,7 +34,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> Linux </h2>
-    {% for linux in site.categories.Linux %}
+    {% assign Linux_category = site.categories.Linux | sort: 'date' %}
+    {% for linux in Linux_category %}
         <div>
             - <a href="{{ linux.url | prepend: site.baseurl }}">{{ linux.title }}</a>
         </div>
@@ -39,7 +43,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> JS </h2>
-    {% for JS in site.categories.JS %}
+    {% assign JS_category = site.categories.JS | sort: 'date' %}
+    {% for JS in JS_category %}
         <div>
             - <a href="{{ JS.url | prepend: site.baseurl }}">{{ JS.title }}</a>
         </div>
@@ -47,7 +52,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> Java </h2>
-    {% for Java in site.categories.Java %}
+    {% assign Java_category = site.categories.Java | sort: 'date' %}
+    {% for Java in Java_category %}
         <div>
             - <a href="{{ Java.url | prepend: site.baseurl }}">{{ Java.title }}</a>
         </div>
@@ -55,7 +61,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> DB </h2>
-    {% for DB in site.categories.DB %}
+    {% assign DB_category = site.categories.DB | sort: 'date' %}
+    {% for DB in DB_category %}
         <div>
             - <a href="{{ DB.url | prepend: site.baseurl }}">{{ DB.title }}</a>
         </div>
@@ -63,7 +70,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> DevOps </h2>
-    {% for DO in site.categories.DevOps %}
+    {% assign DevOps_category = site.categories.DevOps | sort: 'date' %}
+    {% for DO in DevOps_category %}
         <div>
             - <a href="{{ DO.url | prepend: site.baseurl }}">{{ DO.title }}</a>
         </div>
@@ -71,7 +79,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> DataStructure </h2>
-    {% for DS in site.categories.DataStructure %}
+    {% assign DataStructure_category = site.categories.DataStructure | sort: 'date' %}
+    {% for DS in DataStructure_category %}
         <div>
             - <a href="{{ DS.url | prepend: site.baseurl }}">{{ DS.title }}</a>
         </div>
@@ -79,7 +88,8 @@ permalink: /categories/
 </div>
 <div>
     <h2> DesignPattern </h2>
-    {% for DP in site.categories.DesignPattern %}
+    {% assign DesignPattern_category = site.categories.DesignPattern | sort: 'date' %}
+    {% for DP in DesignPattern_category %}
         <div>
             - <a href="{{ DP.url | prepend: site.baseurl }}">{{ DP.title }}</a>
         </div>
