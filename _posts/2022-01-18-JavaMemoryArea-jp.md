@@ -5,6 +5,19 @@ title: "JVM & Java Memory Area"
 author: "TY_K"
 ---
 
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    table tr td{
+        border:1px solid;
+        padding:4px;
+    }
+    table th:first-of-type {
+        width: 25%;
+    }
+</style>
+
 ## JVM(Java Virtual Machine)
 
 자바 가상 머신으로 자바 바이트 코드를 실행할 수 있는 주체다.
@@ -143,6 +156,95 @@ Old영역에 있는 참조가 없는 객체들을 표시하고 그 해당 객체
 
 따라서 메모리를 옮기고 있는데 다른 쓰레드가 메모리를 사용해버리면 안되기 때문에 모든 쓰레드가 정지하게 되는 것이다.
 
-[참고링크][JavaMemory]
+### JDK 8에서 Perm 영역은 왜 삭제됐을까
 
-[JavaMemory]: https://jeong-pro.tistory.com/148 "JavaMemory"
+#### 요약
+
++ JDK 8부터 Permanent Heap 영역이 제거되었다.
+  - 대신 Metaspace 영역이 추가되었다.
+  - Perm은 JVM에 의해 크기가 강제되던 영역이다.
+
+
++ Metaspace는 Native memory 영역으로, OS가 자동으로 크기를 조절한다.
+  - 옵션으로 Metaspace의 크기를 줄일 수도 있다.
+
+
++ 그 결과 기존과 비교해 큰 메모리 영역을 사용할 수 있게 되었다.
+  - Perm 영역 크기로 인한 java.lang.OutOfMemoryError를 더 보기 힘들어진다.
+
+
+JEP 122에서는 JRockit과 Hotspot을 통일시키기 위해 PermGen 영역을 삭제한다고 한다.
+
+### JDK 8: PermGen 제거
+
+**What's New in JDK 8**문서를 보면 HotSpot 항목에서 다음 문장을 찾을 수 있다.
+
+> Removal of PermGen.
+
+### 7과 8의 비교
+
+"JVM Performance Optimizing 및 성능분석 사례"에서는 7과 8의 HotSpot JVM 구조를 비교하고 있다
+
+Java7 까지의 HotSpot JVM 구조를 보자.
+
+```terminal
+<----- Java Heap ----->             <--- Native Memory --->
++------+----+----+-----+-----------+--------+--------------+
+| Eden | S0 | S1 | Old | Permanent | C Heap | Thread Stack |
++------+----+----+-----+-----------+--------+--------------+
+                        <--------->
+                       Permanent Heap
+S0: Survivor 0
+S1: Survivor 1
+```
+
+그리고 Java 8 HotSpot JVM 구조를 보자.
+
+```terminal
+<----- Java Heap -----> <--------- Native Memory --------->
++------+----+----+-----+-----------+--------+--------------+
+| Eden | S0 | S1 | Old | Metaspace | C Heap | Thread Stack |
++------+----+----+-----+-----------+--------+--------------+
+```
+
+7에서 Java Heap과 Perm 영역은 다음과 같은 역할을 한다.
+
++ Java Heap
+  + PermGen에 있는 클래스의 인스턴스 저장.
+  + -Xms(min), -Xmx(max)로 사이즈 조정.
+
++ PermGen
+  + 클래스와 메소드의 메타데이터 저장.
+  + 상수 풀 정보.
+  + JVM, JIT 관련 데이터.
+  + -XX:PermSize(min), -XX:MaxPermSize(max)로 사이즈 조정.
+
+책에서는 Perm 영역의 역할에 대해 다음과 같이 설명한다.
+
+> Perm 영역은 보통 Class의 Meta 정보나 Method의 Meta 정보, Static 변수와 상수 정보들이 저장되는 공간으로 흔히 메타데이터 저장 영역이라고도 한다. 이 영역은 Java 8 부터는 Native 영역으로 이동하여 Metaspace 영역으로 변경되었다. (다만, 기존 Perm 영역에 존재하던 Static Object는 Heap 영역으로 옮겨져서 GC의 대상이 최대한 될 수 있도록 하였다)
+
+#### 변경된 사항을 표로 정리하면 다음과 같다.
+
+||Java 7|Java 8|
+|--|--|--|
+|Class 메타 데이터|저장|저장|
+|Method 메타 데이터|저장|저장|
+|Static Object 변수, 상수|저장|Heap 영역으로 이동|
+|메모리 튜닝|Heap, Perm 영역 튜닝|Heap 튜닝, Native 영역은 OS가 동적 조정|
+|메모리 옵션|-XX:PermSize<br/>-XX:MaxPermSize|-XX:MetaspaceSize<br/>-XX:MaxMetaspaceSize|
+
+### 왜 Perm이 제거됐고 Metaspace 영역이 추가된 것인가?
+
+> 최근 Java 8에서 JVM 메모리 구조적인 개선 사항으로 Perm 영역이 Metaspace 영역으로 전환되고 기존 Perm 영역은 사라지게 되었다. Metaspace 영역은 Heap이 아닌 Native 메모리 영역으로 취급하게 된다. (Heap 영역은 JVM에 의해 관리된 영역이며, Native 메모리는 OS 레벨에서 관리하는 영역으로 구분된다) Metaspace가 Native 메모리를 이용함으로서 개발자는 영역 확보의 상한을 크게 의식할 필요가 없어지게 되었다.
+
+즉, 각종 메타 정보를 OS가 관리하는 영역으로 옮겨 Perm 영역의 사이즈 제한을 없앤 것이라 할 수 있다.
+
+#### 원문링크
+
+[JVM 구조와 자바 런타임 메모리 구조 (자바 애플리케이션이 실행될 때 JVM에서 일어나는 일, 과정을 설명해줄 수 있나요?)][link1]
+
+[JDK 8에서 Perm 영역은 왜 삭제됐을까][link2]
+
+[link1]: https://jeong-pro.tistory.com/148 "link1"
+
+[link2]: https://johngrib.github.io/wiki/java8-why-permgen-removed/ "link2"

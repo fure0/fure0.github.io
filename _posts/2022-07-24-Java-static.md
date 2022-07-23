@@ -209,6 +209,58 @@ static 필드는 전역으로 관리되기 때문에 프로그램 전체에서 �
 예를 들어 자주 사용하지만 절대 변하지 않는 변수, 즉 상수의 경우에는 관례적으로 final static을 사용하여 선언합니다. 이 경우 적어도 1바이트 이상의 GC 대상 객체가 사라지게 됩니다. GC가 애초에 대상으로 인식하지 않기 때문에 성능 향상에 도움을 줄 수 있습니다. 
 다만 단순히 편리하다는 이유로 잘못 사용하게 되면 의도한 바와 달리 예상하지 못한 문제를 야기할 수도 있습니다.
 
+
+### <label style='color:orange'>Java8부터는 static이 heap영역에 저장된다?</label>
+
+static은 런타임시 클래스 로더에 의해 메서드 영역에 적재되며 프로그램이 종료될 때 까지 GC에 대상이 아니라고 알고있었다. 그런데, permanent영역과 metaspace에 관련된 글을 읽는 중 static이 heap영역으로 할당된다는 말이있어 혼란스러웠다.
+
+먼저 permanent영역과 metaspace영역에 대해서 정리해보자.
+
+#### permanent영역
+
+- permanent영역은 클래스 내부의 메타 데이터를 저장하는 영역이다.
+- heap영역에 속하며 class, method meta data, static object, variable, constant pool등을 관리했다.
+- java8이전에는 permanent영역은 method영역으로 사용되었다.
+- java8이후부터 사라졌으며 metaspace영역으로 대체되었다.
+
+#### metaspace영역
+
+- java8부터 생긴 영역으로 permanent영역이 관리하던 정보를 저장한다.
+- permanent영역과는 다르게 native memory영역으로서 jvm이 아닌 os에서 관리한다.
+- method영역이 metaspace에 속한다.
+
+일단, 여러 글을 읽으면서 permenent영역을 사람들마다 heap영역으로 보거나 heap영역이 아니라고 보는 관점이 있어 더 혼란스럽게 느껴졌다. permenent영역을 heap영역으로 본다면 static은 heap에서 관리한다는 말도 틀린 표현은 아니다. 하지만, 이 글에서는 permenent영역을 heap영역과 분리하는 관점에서 진행해보겠다.
+
+우선 jdk8의 레퍼런스를 보면 아래와 같은 내용이 나온다.
+
+![img3](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FmcNoh%2Fbtq5Szc2Ibz%2F1TqW4CvtQzxGWI8nQsdbJK%2Fimg.png)
+
+![img4](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb0U7RP%2Fbtq5Vxscf3t%2FbZfYBeNXiks8sKcs15v931%2Fimg.png)
+
+내용을 해석해보자면, hotspot jvm에서 permanent영역은 제거되고 permenent에서 관리하던 class metadata, interned String, class static variable은 heap영역이나 native memory영역으로 옮겨졌다. 더 정확한 표현으로 class meta-data는 native memory로 interned String과 class static은 heap영역으로 할당된다.
+
+java8부터는 static을 heap영역에서 관리한다는 말이었다. 그렇다면 static을 사용해도 gc에 대상이되나 혼란스러웠다.
+그런데, 글을 자세히 살펴보면 class statics, class static variables라는 표현을 사용한다. 즉, static object를 의미한다.
+우선 static은 아래와 같은 방식으로 사용될 수 있다.
+
+```java
+static int i = 1; //1. primitive타입으로 선언된 static field
+static void a(){} //2. 
+static method static A a = new A(); //3. reference형식의 static field (static object)
+```
+
+primitive타입의 static variable, static method, reference형식의 Object는 permenent영역에 저장된다.
+
+```java
+static A a = new ArrayList<A>(); . . . a.add(new A()); a.add(new A()); a.add(new A()); . . .
+```
+
+문제는 위와 같이 collection 형태로 static object로서 생성되었고, 이후 collection에 객체가 새롭게 추가되는 상황이라면 permenent영역의 memory부족으로 OOM이 발생할 수 있다. 실제로 permenent영역에 메모리 부족문제는 종종 발생하던 이슈였다고 한다.
+
+Java8부터는 permenent영역이 없어지고 metaspace가 생겼다. **기존에 perment영역에 저장되던 static object는 heap영역에 저장되도록 변경되었다(reference는 여전히 metaspace에서 관리된다).** 그렇기 때문에 참조를 잃은 static object는 GC의 대상이 될 수 있다.
+
+결론은 Java8이전은 **Static Object**는 permanent영역, Java8버전부터 heap영역에서 관리된다.
+
 #### 원문링크
 
 [[Java] static변수와 static 메소드][link1]
@@ -217,8 +269,13 @@ static 필드는 전역으로 관리되기 때문에 프로그램 전체에서 �
 
 [Static 사용을 피해야 하는 이유][link3]
 
+[[JAVA] Java8부터는 static이 heap영역에 저장된다?][link4]
+
 [link1]: https://mangkyu.tistory.com/47 "link1"
 
 [link2]: https://vaert.tistory.com/101 "link2"
 
 [link3]: https://kellis.tistory.com/127 "link3"
+
+[link4]: https://jgrammer.tistory.com/144 "link4"
+
