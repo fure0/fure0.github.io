@@ -38,3 +38,36 @@ int i = 1;
 Integer integer = i; // int -> Integer(Auto Boxing)
 int i = integer; // Integer -> int(Auto UnBoxing)
 ```
+
+## Java 1.4 이하에서 Int 변환으로 정수
+
+Java 1.4 이하 버전을 사용하는 경우 암시적 변환이 지원되지 않으므로 Integer 클래스의 intValue() 메서드를 사용하여 Integer 개체를 int 유형으로 변환. 이 메서드는 인수를 받지 않지만 기본 값을 반환한다
+
+```java
+public class SimpleTesting{
+	public static void main(String[] args){
+		Integer a = new Integer(10);
+		System.out.println("Integer value = "+a);
+		int b = a.intValue();
+		System.out.println("int value = "+b);
+	}
+}
+
+// Integer value = 10
+// int value = 10
+```
+
+## Java에서 parseInt() 메서드를 사용하여 정수에서 Int로 변환
+
+parseInt()는 정수 값을 int로 변환할 수 있는 Integer 메서드입니다. 문자열 인수를 가져오고 int 값을 반환합니다. 문자열 정수 객체만 있는 경우에 유용합니다. 아래의 예를 참조하십시오.
+
+```java
+public class SimpleTesting{  
+	public static void main(String[] args){
+		Integer a = new Integer("10");
+		System.out.println("Integer value = "+a);
+		int b = Integer.parseInt(a.toString());
+		System.out.println("int value = "+b);
+	}
+}
+```
