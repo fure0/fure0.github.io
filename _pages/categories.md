@@ -60,6 +60,15 @@ permalink: /categories/
     {% endfor %}
 </div>
 <div>
+    <h2> Spring </h2>
+    {% assign Spring_category = site.categories.Spring | sort: 'date' %}
+    {% for Spring in Spring_category %}
+        <div>
+            - <a href="{{ Spring.url | prepend: site.baseurl }}">{{ Spring.title }}</a>
+        </div>
+    {% endfor %}
+</div>
+<div>
     <h2> DB </h2>
     {% assign DB_category = site.categories.DB | sort: 'date' %}
     {% for DB in DB_category %}
