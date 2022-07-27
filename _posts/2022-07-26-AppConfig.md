@@ -17,7 +17,7 @@ author: "TY_K"
 
 ### AppConfig 이전
 
-#### KokApp
+#### KokApp
 ```java
 public static void main(String[] args) {
 
@@ -40,12 +40,12 @@ public static void main(String[] args) {
 public class AppConfig {
 
     public KokService kokService() {
-        return new KokServiceImpl(new MemoryKokRepository());
+        return new KokServiceImpl(new MemoryKokRepository());
     }
 
     public JumunService jumunService() {
         return new JumunServiceImpl(
-            new MemoryKokRepository(),
+            new MemoryKokRepository(),
             new FixWaribikiPolicy()
         );
     }
@@ -57,9 +57,9 @@ public class AppConfig {
 ```java
 public class KokServiceImpl implements KokService {
 
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
 
-    public KokServiceImpl(KokRepository kokRepository) {
+    public KokServiceImpl(KokRepository kokRepository) {
         this.kokRepository = kokRepository;
     }
 }
@@ -69,10 +69,10 @@ public class KokServiceImpl implements KokService {
 ```java
 public class JumunServiceImpl implements JumunService {
     
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
     private final WaribikiPolicy waribikiPolicy;
 
-    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
+    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
         this.kokRepository = kokRepository;
         this.waribikiPolicy = waribikiPolicy;
     }
@@ -82,9 +82,9 @@ public class JumunServiceImpl implements JumunService {
 
 ### AppConfig 실행
 
-#### 사용 클래스 - KokApp
+#### 사용 클래스 - KokApp
 ```java
-public class KokApp {
+public class KokApp {
 
     public static void main(String[] args) {
 
@@ -118,12 +118,12 @@ public class JumunApp {
 public class AppConfig {
 
     public KokService kokService() {
-        return new KokServiceImpl(new MemoryKokRepository());
+        return new KokServiceImpl(new MemoryKokRepository());
     }
 
     public JumunService jumunService() {
         return new JumunServiceImpl(
-            new MemoryKokRepository(),
+            new MemoryKokRepository(),
             new FixWaribikiPolicy()
         );
     }
@@ -142,8 +142,8 @@ public class AppConfig {
         return new JumunServiceImpl(kokRepository(), waribikiPolicy());
     }
 
-    public KokRepository kokRepository() {
-        return new MemoryKokRepository();
+    public KokRepository kokRepository() {
+        return new MemoryKokRepository();
     }
 
     public WaribikiPolicy waribikiPolicy() {
@@ -170,8 +170,8 @@ public class AppConfig {
     }
 
     @Bean 
-    public KokRepository kokRepository() {
-        return new MemoryKokRepository();
+    public KokRepository kokRepository() {
+        return new MemoryKokRepository();
     }
 
     @Bean 
@@ -183,9 +183,9 @@ public class AppConfig {
 
 ```
 
-#### KokApp에 스프링 컨테이너 적용
+#### KokApp에 스프링 컨테이너 적용
 ```java
-public class KokApp {
+public class KokApp {
     public static void main(String[] args) {
         // AppConfig appConfig = new AppConfig();
         // KokService kokService = appConfig.kokService();
@@ -229,10 +229,10 @@ public class AutoAppConfig {
 }
 ```
 
-#### MemoryKokRepository @Component 추가
+#### MemoryKokRepository @Component 추가
 ```java
 @Component
-public class MemoryKokRepository implements KokRepository {}
+public class MemoryKokRepository implements KokRepository {}
 ```
 
 #### RateWaribikiPolicy @Component 추가
@@ -246,10 +246,10 @@ public class RateWaribikiPolicy implements WaribikiPolicy {}
 @Component 
 public class KokServiceImpl implements KokService {
 
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
 
     @Autowired 
-    public KokServiceImpl(KokRepository kokRepository) {
+    public KokServiceImpl(KokRepository kokRepository) {
         this.kokRepository = kokRepository;
     }
 
@@ -262,11 +262,11 @@ public class KokServiceImpl implements KokService {
 @Component 
 public class JumunServiceImpl implements JumunService {
 
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
     private final WaribikiPolicy waribikiPolicy;
 
     @Autowired 
-    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
+    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
         this.kokRepository = kokRepository;
         this.waribikiPolicy = waribikiPolicy;
     }
@@ -292,11 +292,11 @@ public class AutoAppConfigTest {
 @Component 
 public class JumunServiceImpl implements JumunService {
 
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
     private final WaribikiPolicy waribikiPolicy;
 
     @Autowired // 생성자가 딱 1개만 있으면 @Autowired 를 생략할 수 있다.
-    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
+    public JumunServiceImpl(KokRepository kokRepository, WaribikiPolicy waribikiPolicy) {
         this.kokRepository = kokRepository;
         this.waribikiPolicy = waribikiPolicy;
     }
@@ -310,7 +310,7 @@ public class JumunServiceImpl implements JumunService {
 @RequiredArgsConstructor 
 public class JumunServiceImpl implements JumunService {
 
-    private final KokRepository kokRepository;
+    private final KokRepository kokRepository;
     private final WaribikiPolicy waribikiPolicy;
 
 }
