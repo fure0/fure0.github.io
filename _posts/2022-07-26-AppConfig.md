@@ -21,7 +21,7 @@ author: "TY_K"
 ```java
 public static void main(String[] args) {
 
-    KokService kokService = new KokServiceImpl();
+    KokService kokService = new KokServiceImpl();
 }
 ```
 
@@ -29,7 +29,7 @@ public static void main(String[] args) {
 ```java
 public static void main(String[] args) {
 
-    KokService kokService = new KokServiceImpl();
+    KokService kokService = new KokServiceImpl();
     JumunService jumunService = new JumunServiceImpl();
 
 }
@@ -39,8 +39,8 @@ public static void main(String[] args) {
 ```java
 public class AppConfig {
 
-    public KokService kokService() {
-        return new KokServiceImpl(new MemoryKokRepository());
+    public KokService kokService() {
+        return new KokServiceImpl(new MemoryKokRepository());
     }
 
     public JumunService jumunService() {
@@ -53,13 +53,13 @@ public class AppConfig {
 }
 ```
 
-#### KokServiceImpl - 생성자 주입
+#### KokServiceImpl - 생성자 주입
 ```java
-public class KokServiceImpl implements KokService {
+public class KokServiceImpl implements KokService {
 
     private final KokRepository kokRepository;
 
-    public KokServiceImpl(KokRepository kokRepository) {
+    public KokServiceImpl(KokRepository kokRepository) {
         this.kokRepository = kokRepository;
     }
 }
@@ -89,7 +89,7 @@ public class KokApp {
     public static void main(String[] args) {
 
         AppConfig appConfig = new AppConfig();
-        KokService kokService = appConfig.kokService();
+        KokService kokService = appConfig.kokService();
 
     }
 
@@ -103,7 +103,7 @@ public class JumunApp {
     public static void main(String[] args) {
 
         AppConfig appConfig = new AppConfig();
-        KokService kokService = appConfig.kokService();
+        KokService kokService = appConfig.kokService();
         JumunService jumunService = appConfig.jumunService();
 
     }
@@ -117,8 +117,8 @@ public class JumunApp {
 ```java
 public class AppConfig {
 
-    public KokService kokService() {
-        return new KokServiceImpl(new MemoryKokRepository());
+    public KokService kokService() {
+        return new KokServiceImpl(new MemoryKokRepository());
     }
 
     public JumunService jumunService() {
@@ -134,8 +134,8 @@ public class AppConfig {
 ```java
 public class AppConfig {
 
-    public KokService kokService() {
-        return new KokServiceImpl(kokRepository());
+    public KokService kokService() {
+        return new KokServiceImpl(kokRepository());
     }
 
     public JumunService jumunService() {
@@ -160,8 +160,8 @@ public class AppConfig {
 public class AppConfig {
 
     @Bean 
-    public KokService kokService() {
-        return new KokServiceImpl(kokRepository());
+    public KokService kokService() {
+        return new KokServiceImpl(kokRepository());
     }
 
     @Bean 
@@ -188,12 +188,12 @@ public class AppConfig {
 public class KokApp {
     public static void main(String[] args) {
         // AppConfig appConfig = new AppConfig();
-        // KokService kokService = appConfig.kokService();
+        // KokService kokService = appConfig.kokService();
         ApplicationContext applicationContext = 
             new AnnotationConfigApplicationContext(AppConfig.class);
 
-        KokService kokService = 
-            applicationContext.getBean("kokService", KokService.class);
+        KokService kokService = 
+            applicationContext.getBean("kokService", KokService.class);
     }
 }
 ```
@@ -204,13 +204,13 @@ public class JumunApp {
     
     public static void main(String[] args) {
         // AppConfig appConfig = new AppConfig();
-        // KokService kokService = appConfig.kokService();
+        // KokService kokService = appConfig.kokService();
         // JumunService jumunService = appConfig.jumunService();
         ApplicationContext applicationContext = 
             new AnnotationConfigApplicationContext(AppConfig.class);
 
-        KokService kokService = 
-            applicationContext.getBean("kokService", KokService.class);
+        KokService kokService = 
+            applicationContext.getBean("kokService", KokService.class);
 
         JumunService jumunService = 
             applicationContext.getBean("jumunService", JumunService.class);
@@ -241,15 +241,15 @@ public class MemoryKokRepository implements KokRepository {}
 public class RateWaribikiPolicy implements WaribikiPolicy {}
 ```
 
-#### KokServiceImpl @Component, @Autowired 추가
+#### KokServiceImpl @Component, @Autowired 추가
 ```java
 @Component 
-public class KokServiceImpl implements KokService {
+public class KokServiceImpl implements KokService {
 
     private final KokRepository kokRepository;
 
     @Autowired 
-    public KokServiceImpl(KokRepository kokRepository) {
+    public KokServiceImpl(KokRepository kokRepository) {
         this.kokRepository = kokRepository;
     }
 
@@ -279,8 +279,8 @@ public class AutoAppConfigTest {
     @Test void 
     basicScan() {
         ApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
-        KokService kokService = ac.getBean(KokService.class);
-        assertThat(kokService).isInstanceOf(KokService.class);
+        KokService kokService = ac.getBean(KokService.class);
+        assertThat(kokService).isInstanceOf(KokService.class);
     }
 }
 ```
