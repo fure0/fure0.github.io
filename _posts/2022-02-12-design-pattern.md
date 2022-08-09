@@ -1,7 +1,7 @@
 ---
 layout: post
 categories: "DesignPattern"
-title: "디자인 패턴(Design Pattern)이란?"
+title: "What is Design Pattern?"
 author: "TY_K"
 ---
 
