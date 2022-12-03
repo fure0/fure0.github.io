@@ -67,9 +67,9 @@ public class InnerSample{
   }
   public void makeInnerObject(){
     OuterOfInner outer = new OuterOfInner();
-    OuterOfInner.Inner inner = outer.newInner();
+    OuterOfInner.Inner inner = outer.new Inner();
     inner.setValue(3);
-    System.out..println(inner.getValue());
+    System.out.println(inner.getValue());
   }
 }
 ```
